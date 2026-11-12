@@ -33,6 +33,16 @@ if ($env:GEMINI_API_KEY) {
 } else {
     Write-Host "GEMINI_API_KEY no está configurada; el chat seguirá deshabilitado." -ForegroundColor Yellow
 }
+if ($env:MANAGER_PASSWORD -and $env:APP_AUTH_SECRET) {
+    Write-Host "Acceso local de gerente configurado (credenciales ocultas)." -ForegroundColor Green
+} else {
+    Write-Host "Configura MANAGER_PASSWORD y APP_AUTH_SECRET en .env para iniciar sesión como gerente." -ForegroundColor Yellow
+}
+if ($env:BCCR_API_TOKEN) {
+    Write-Host "Token BCCR cargado (oculto)." -ForegroundColor Green
+} else {
+    Write-Host "BCCR_API_TOKEN no está configurado; los pagos USD/EUR no podrán solicitar conversión." -ForegroundColor Yellow
+}
 
 if (Test-LocalPort 8000) {
     if (-not $RestartBackend) {

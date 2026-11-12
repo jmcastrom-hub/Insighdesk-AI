@@ -1,8 +1,14 @@
-# PropÃ³sito del Proyecto: Insightdesk-AI
-El objetivo de este proyecto es construir una plataforma Full Stack que permita a los usuarios visualizar indicadores de ventas de forma clara e interactuar con un agente de IA para obtener insights de negocio.
+# Propósito del Proyecto: Insightdesk-AI
 
-## Criterios de Ã‰xito
-- El backend (FastAPI) debe servir datos precisos desde una base de datos SQLite.
-- El frontend (React + Vite) debe consumir estos datos y mostrarlos usando Recharts.
-- La base de datos debe ser reproducible mediante un seed automatizado.
-- El sistema debe superar pruebas unitarias (pytest) para validaciones de datos y endpoints.
+Insightdesk-AI es una plataforma Full Stack para consultar el desempeño de ventas, mantener productos e inventario, y solicitar cambios con trazabilidad. Un asistente Gemini responde preguntas de negocio usando los datos guardados.
+
+## Criterios de éxito
+
+- FastAPI sirve datos validados desde SQLite mediante SQLAlchemy.
+- React + Vite consume la API y presenta indicadores con Recharts.
+- El seed mantiene sus 50 ventas de demostración reproducibles; no asigna vendedores ni inventario ficticios.
+- Productos, ventas, vendedores, existencias, devoluciones, notas de crédito y pagos en divisa se reflejan de forma consistente en los indicadores.
+- Las acciones de vendedor y gerente se registran en una bitácora; cambios financieros sensibles requieren decisión del gerente José Castro.
+- Los pagos USD/EUR aprobados guardan la tasa oficial BCCR, su fecha y su equivalente CRC.
+- Las pruebas pytest cubren validaciones, indicadores, inventario, auditoría y flujos de aprobación.
+- La clave de Gemini, el token BCCR y las credenciales locales permanecen fuera de Git.

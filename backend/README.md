@@ -1,7 +1,16 @@
-﻿
-## Configuración de Gemini y gestión de datos
+# Backend Insightdesk-AI
 
-- Copia `.env.example` a `.env` en la raíz y agrega una clave nueva de Gemini en `GEMINI_API_KEY`. No uses la clave compartida en el chat: revócala en Google AI Studio y genera otra.
-- `start_dashboard.ps1` carga `.env` a las dos ventanas; el archivo está excluido de Git.
-- La interfaz permite crear, editar y eliminar productos y ventas. Los ingresos de las ventas se recalculan al actualizar producto o cantidad. Un producto que ya tiene ventas no se puede borrar para conservar el historial; elimina primero las ventas asociadas si corresponde.
-- El chat envía al backend la pregunta y una ventana corta de conversación. El backend adjunta indicadores, catálogo y ventas recientes; la clave nunca se envía al navegador.
+FastAPI + SQLite/SQLAlchemy. Inicia con:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+El backend lee `.env` desde la raíz del proyecto. Define `MANAGER_PASSWORD` y `APP_AUTH_SECRET` para sesiones; define `BCCR_API_TOKEN` para las tasas oficiales y `GEMINI_API_KEY` para el chat. La API de aprobación solo acepta solicitudes de gerente desde loopback.
+
+La creación del esquema agrega campos compatibles a SQLite existente. Existencias nuevas inician en cero; las 50 ventas seed no se asignan a vendedores automáticamente.
+
+Pruebas: `python -m pytest -q`.

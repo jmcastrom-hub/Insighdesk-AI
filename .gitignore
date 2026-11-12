@@ -9,5 +9,6 @@ venv/
 *.log
 dist/
 .pytest_cache/
+.pytest-tmp*/
 *.db-shm
 *.db-wal
